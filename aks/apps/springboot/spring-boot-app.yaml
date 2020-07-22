@@ -1,0 +1,73 @@
+---
+# Spring Boot App - Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-app
+  namespace: "{NAMESPACE}"
+  labels:
+    app: spring-boot-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: spring-boot-app
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+# Spring Boot App - Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  namespace: "{NAMESPACE}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      name: spring-boot-app
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+        - name: spring-boot-app
+          image: meaghankj/web-app-postgres-on-k8s:v2
+          command: ["java", "-jar", "/app.jar", "--spring.config.additional-location=/config/application.properties"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AZ_POSTGRES_SERVER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: az-postgres-server-name
+                  key: AZ_POSTGRES_SERVER_NAME
+            - name: AZ_POSTGRES_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: az-postgres-db-name
+                  key: AZ_POSTGRES_DB_NAME
+            - name: AZ_POSTGRES_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: az-postgres-db-username
+                  key: AZ_POSTGRES_DB_USERNAME
+            - name: AZ_POSTGRES_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: az-postgres-db-password
+                  key: AZ_POSTGRES_DB_PASSWORD
+          volumeMounts:
+          - name: spring-boot-app-azure-postgres-config
+            mountPath: "/config"
+            readOnly: true
+      volumes:
+      - name: spring-boot-app-azure-postgres-config
+        configMap:
+          name: spring-boot-app-azure-postgres-config
+          items:
+          - key: application.properties
+            path: application.properties
+---

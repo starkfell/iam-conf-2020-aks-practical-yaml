@@ -1,0 +1,11 @@
+# Build is automatically triggered from the master branch in the Repo.
+trigger:
+- master
+
+# Using an Azure DevOps Linux Agent.
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Building a Pratical YAML Pipeline for AKS."
+  displayName: '¯\_(ツ)_/¯'

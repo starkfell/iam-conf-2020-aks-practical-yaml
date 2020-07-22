@@ -1,0 +1,10 @@
+{
+    "adminUsername": "linuxadmin",
+    "nodePoolName": "springboot",
+    "kubernetesVersion": "1.18.4",
+    "initialNodeCount": "2",
+    "minNodeCount": "2",
+    "maxNodeCount": "10",
+    "nodeOsDiskSizeGB":"128",
+    "nodeVmSize": "Standard_DS2_v2"
+}

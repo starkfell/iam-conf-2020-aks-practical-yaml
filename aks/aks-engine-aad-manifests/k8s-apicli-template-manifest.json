@@ -1,0 +1,22 @@
+[
+    {
+        "resourceAppId": "{K8S_APISRV_APP_ID}",
+        "resourceAccess":
+        [
+            {
+                "id": "{K8S_APISRV_OAUTH2_PERMISSIONS_ID}",
+                "type": "Scope"
+            }
+        ]
+    },
+    {
+        "resourceAppId": "00000002-0000-0000-c000-000000000000",
+        "resourceAccess":
+        [
+            {
+                "id": "311a71cc-e848-46a1-bdf8-97ff7156d8e6",
+                "type": "Scope"
+            }
+        ]
+    }
+]

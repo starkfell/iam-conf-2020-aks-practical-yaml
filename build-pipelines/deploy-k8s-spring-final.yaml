@@ -1,0 +1,97 @@
+# Build is automatically triggered from the master branch in the Repo.
+trigger:
+- master
+
+# Using an Azure DevOps Linux Agent.
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo "Building a Pratical YAML Pipeline for AKS."
+  displayName: '¯\_(ツ)_/¯'
+
+# Deploying AKS Cluster - iam-k8s-spring.
+- task: AzureCLI@2
+  displayName: 'Deploying AKS Cluster - iam-k8s-spring'
+  inputs:
+    # Using the Service Connection and Service Principal, 'az-sub-mgmt-vs-ent-msdn-sp', to authenticate to the Azure Subscription
+    # for this Azure CLI Task and all subsequent tasks in this Pipeline.
+    azureSubscription: 'az-sub-mgmt-vs-ent-msdn-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './aks/deploy-aks-k8s-cluster.sh'
+    arguments: '-a iam-k8s-spring
+    -s 7f24e4c5-12f1-4047-afa1-c15d6927e745
+    -d 84f065f5-e37a-4127-9c82-0b1ecd57a652
+    -f rhand18yahoo.onmicrosoft.com
+    -g westeurope
+    -h 1.18.4-std-ds2-v3.json'
+
+# Adding cluster-admin Users to AKS Cluster - iam-k8s-spring.
+- task: AzureCLI@2
+  displayName: 'Adding cluster-admin Users to AKS Cluster - iam-k8s-spring'
+  inputs:
+    azureSubscription: 'az-sub-mgmt-vs-ent-msdn-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './aks/add-cluster-admins-to-aks-cluster.sh'
+    arguments: '-a iam-k8s-spring
+    -s rhand18yahoo.onmicrosoft.com
+    -d rhand18@yahoo.com,yerna.marie@gmail.com
+    -f westeurope'
+
+# Deploying PostgreSQL Key Vault for iam-k8s-spring.
+- task: AzureCLI@2
+  displayName: 'Deploying PostgreSQL Key Vault for iam-k8s-spring'
+  inputs:
+    azureSubscription: 'az-sub-mgmt-vs-ent-msdn-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './aks/deploy-postgresql-kv.sh'
+    arguments: '-a iam-k8s-spring
+    -s westeurope'
+
+# Deploying PostgreSQL Server and Databases for iam-k8s-spring.
+- task: AzureCLI@2
+  displayName: 'Deploying PostgreSQL Server and Databases for iam-k8s-spring'
+  inputs:
+    azureSubscription: 'az-sub-mgmt-vs-ent-msdn-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './aks/deploy-postgresql-resources.sh'
+    arguments: '-a iam-k8s-spring
+    -s 213.47.155.102
+    -d pgadmin
+    -f springdb
+    -g westeurope'
+
+# Deploying Spring App to AKS Cluster.
+- task: AzureCLI@2
+  displayName: 'Deploying Spring App to AKS Cluster iam-k8s-spring'
+  inputs:
+    azureSubscription: 'az-sub-mgmt-vs-ent-msdn-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './aks/deploy-spring-app.sh'
+    arguments: '-a iam-k8s-spring
+    -s spring
+    -d springdb'
+
+# Adding a Secondary Node Pool to the AKS Cluster.
+- task: AzureCLI@2
+  displayName: 'Adding a Secondary Node Pool to AKS Cluster iam-k8s-spring'
+  inputs:
+    azureSubscription: 'az-sub-mgmt-vs-ent-msdn-sp'
+    scriptType: 'bash'
+    scriptLocation: 'scriptPath'
+    scriptPath: './aks/add-node-pool-to-aks-cluster.sh'
+    arguments: '-a iam-k8s-spring
+    -s iam-k8s-spring
+    -d dotnetcore
+    -f 1.18.4
+    -g 1
+    -h 4
+    -j 1
+    -k 128
+    -l Standard_DS2_v2
+    -z Linux'

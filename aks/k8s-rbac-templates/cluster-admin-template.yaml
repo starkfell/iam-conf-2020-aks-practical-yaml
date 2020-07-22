@@ -1,0 +1,14 @@
+---
+# Kubernetes RBAC Template used to grant Azure Active Directory Users cluster-admin access to the AKS Cluster.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admin:{EMAIL_ADDRESS}
+subjects:
+- kind: User
+  name: {AAD_USER_OBJECT_ID}
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+---

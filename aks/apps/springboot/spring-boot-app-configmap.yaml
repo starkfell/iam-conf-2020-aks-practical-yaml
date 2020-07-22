@@ -1,0 +1,15 @@
+---
+# Spring Boot App - ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-boot-app-azure-postgres-config
+  namespace: "{NAMESPACE}"
+data:
+  application.properties: |-
+    spring.datasource.driverClassName=org.postgresql.Driver
+    spring.datasource.url=jdbc:postgresql://${AZ_POSTGRES_SERVER_NAME}.postgres.database.azure.com:5432/${AZ_POSTGRES_DB_NAME}
+    spring.datasource.username=${AZ_POSTGRES_DB_USERNAME}@${AZ_POSTGRES_SERVER_NAME}
+    spring.datasource.password=${AZ_POSTGRES_DB_PASSWORD}
+    spring.jpa.hibernate.ddl-auto=update
+---
