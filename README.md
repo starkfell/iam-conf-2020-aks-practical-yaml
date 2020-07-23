@@ -50,7 +50,7 @@ psql
 
 ## Deployment Overview
 
-![alt text](./images/RG-overview.jpg "Deployment Overview")
+![alt text](./images/deployment-overview.jpg "Deployment Overview")
 
 ## Create a new Project in your Azure DevOps Account
 
@@ -74,7 +74,7 @@ Next, extract and copy the contents of the zip file into your Azure DevOps repos
 
 ## Create a Management Service Principal for your Azure Subscription
 
-![alt text](./images/SP-overview.jpg "Service Principals Overview")
+![alt text](./images/service-principals-overview.jpg "Service Principals Overview")
 
 As we covered in our presentation, it's never a good idea to use a regular User Account to deploy and manage resources in Azure for two reasons
 
