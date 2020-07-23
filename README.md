@@ -50,7 +50,7 @@ psql
 
 ## Deployment Overview
 
-![alt text](./images/overview-resource-groups.jpg "Deployment Overview")
+![alt text](./images/RG-overview.jpg "Deployment Overview")
 
 ## Create a new Project in your Azure DevOps Account
 
@@ -74,7 +74,7 @@ Next, extract and copy the contents of the zip file into your Azure DevOps repos
 
 ## Create a Management Service Principal for your Azure Subscription
 
-![alt text](./images/service-principals-overview.jpg "Service Principals Overview")
+![alt text](./images/SP-overview.jpg "Service Principals Overview")
 
 As we covered in our presentation, it's never a good idea to use a regular User Account to deploy and manage resources in Azure for two reasons
 
@@ -90,6 +90,8 @@ To start, clone the **iam-conf-2020-aks-practical-yaml** Repository to your Linu
 ```bash
 git clone https://github.com/starkfell/iam-conf-2020-aks-practical-yaml.git
 ```
+
+> **NOTE:** Since the contents of the repository in Github and in Azure DevOps are identical, this step will work as intended. Under normal circumstances, you'd want to be only cloning the Repository from your Azure DevOps Project.
 
 <br/>
 
@@ -119,6 +121,12 @@ Change over to the **prerequisite-scripts** Directory in the Repo.
 
 ```bash
 cd iam-conf-2020-aks-practical-yaml/prerequisite-scripts
+```
+
+Make the **deploy-sp-for-azure-sub-mgmt.sh** script exectuable.
+
+```bash
+chmod 775 deploy-sp-for-azure-sub-mgmt.sh
 ```
 
 Next, deploy the Management Service Principal in the Azure Subscription.
@@ -390,7 +398,7 @@ az login
 > **NOTE**: If you have access to multiple subscriptions, make sure to set to the Azure Subscription where the AKS Cluster is running.
 
 ```bash
-az account set --subscription {AZURE_SUBSCRIPTION_ID}
+az account set --subscription $AZURE_SUBSCRIPTION_ID
 ```
 
 <br/>
@@ -595,6 +603,8 @@ steps:
 
 > **NOTE**: Make sure to replace **213.47.155.102** with a list of IP Addresses (comma-separated) that you want to have direct access to the PostgreSQL Server.
 
+> **NOTE**: The name of your PostgreSQL Server must be globally unique!
+
 <br/>
 
 Save the changes to the file in Visual Studio Code and then sync the file into the Azure DevOps repository.
@@ -686,15 +696,11 @@ steps:
     scriptLocation: 'scriptPath'
     scriptPath: './aks/deploy-spring-app.sh'
     arguments: '-a iam-k8s-spring
-    -s default
+    -s spring
     -d springdb'
 ```
 
 <br/>
-
-> **NOTE**: Something, Something, Something, Darkside...
-
-.
 
 > **NOTE**: Under normal circumstances, the Spring App would be deployed to the AKS Cluster using a separate Repository and Build Pipeline.
 
