@@ -33,8 +33,8 @@ We will be covering how to build an Azure DevOps Build Pipeline for an AKS Clust
 
 Make sure you have access to an **Azure Account** with the following permissions:
 
-* Owner Rights in the Azure Subscription you are working with.
-* Global Admin Rights in the Azure Active Directory associated with the Azure Subscription you are working with.
+- Owner Rights in the Azure Subscription you are working with.
+- Global Admin Rights in the Azure Active Directory associated with the Azure Subscription you are working with.
 
 <br/>
 
@@ -83,8 +83,8 @@ Next, extract and copy the contents of the zip file into your Azure DevOps repos
 
 As we covered in our presentation, it's never a good idea to use a regular User Account to deploy and manage resources in Azure for two reasons
 
-* A User account is more susceptible to a security breach
-* A User account will break automation
+- A User account is more susceptible to a security breach
+- A User account will break automation
 
 Follow the instructions below to create a Management Service Principal in your Azure Subscription.
 
@@ -275,7 +275,7 @@ Next, click on the three vertical dots button in the top right-hand corner and c
 
 Change the Name field to **deploy-k8s-spring** and click on **Save**.
 
-By this time, the Pipeline Run should have successfully completed. Feel free to review the Pipeline Job. 
+By this time, the Pipeline Run should have successfully completed. Feel free to review the Pipeline Job.
 
 <br/>
 
