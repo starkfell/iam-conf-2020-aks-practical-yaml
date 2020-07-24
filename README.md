@@ -4,6 +4,10 @@ We will be covering how to build an Azure DevOps Build Pipeline for an AKS Clust
 
 <br/>
 
+> **NOTE:** If you just getting started with YAML Pipelines in Azure DevOps and need more background information, please check out the **[100 Days of Infrastructure as Code](https://github.com/starkfell/100DaysOfIaC/)** Series. Specific Days that are related to this walkthrough are located in the [Additional Reading](#additional-reading) section.
+
+<br/>
+
 - [Building a Practical YAML Build Pipeline for an AKS Cluster](#building-a-practical-yaml-build-pipeline-for-an-aks-cluster)
   - [Prerequisites](#prerequisites)
   - [Deployment Overview](#deployment-overview)
@@ -21,6 +25,7 @@ We will be covering how to build an Azure DevOps Build Pipeline for an AKS Clust
   - [Verify Access to the Spring App](#verify-access-to-the-spring-app)
   - [Verify the Spring App is connected to the PostgreSQL Server Database](#verify-the-spring-app-is-connected-to-the-postgresql-server-database)
   - [Remove the deployed resources in Azure](#remove-the-deployed-resources-in-azure)
+  - [Additional Reading](#additional-reading)
 
 <br/>
 
@@ -830,3 +835,22 @@ iam-k8s-spring-aad-apisrv
 ```
 
 <br/>
+
+## Additional Reading
+
+[Day 33 - YAML Pipelines in Azure DevOps: When and Why](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.33.yaml.pipelines.in.azdo.when.and.why.md)<br/>
+[Day 34 - YAML Pipelines in Azure DevOps: How](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.34.yaml.pipelines.in.azdo.how.md)<br/>
+[Day 35 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 1](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.35.building.a.practical.yaml.pipeline.part.1.md)<br/>
+[Day 36 - Transform Existing Scripts to YAML Pipelines (Part 1)](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.36.paas.db.postgres.md)<br/>
+[Day 37 - Transform Existing Scripts to YAML Pipelines (Part 2)](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.37.xform.exist.scripts.pt2.md)<br/>
+[Day 38 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 2](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.38.building.a.practical.yaml.pipeline.part.2.md)<br/>
+[Day 39 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 3](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.39.building.a.practical.yaml.pipeline.part.3.md)<br/>
+[Day 40 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 4](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.40.building.a.practical.yaml.pipeline.part.4.md)<br/>
+[Day 41 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 5](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.41.building.a.practical.yaml.pipeline.part.5.md)<br/>
+[Day 42 - Deploy Linked ARM Templates Using Storage Account in YAML Pipeline](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.42.deploy.nested.arm.templates.using.storage.accounts.in.yaml.pipeline.md)<br/>
+[Day 55 - Write better PowerShell, Azure CLI, JSON, KUSTO, Python, and YAML in VS Code](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.55.best.auth.exten.md)<br/>
+[Day 58 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 9](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.58.building.a.practical.yaml.pipeline.part.9.md)<br/>
+[Day 60 - Practical Guide for YAML Build Pipelines in Azure DevOps - Part 10](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.60.building.a.practical.yaml.pipeline.part.10.md)<br/>
+[Day 63 - Sample Pipeline For Azure Network Pattern](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.63.sample.pipline.for.azure.network.pattern.md)<br/>
+[Day 70 - Managing Access to Linux VMs using Azure Key Vault - Part 3](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.70.manage.access.to.linux.vms.using.key.vault.part.3.md)<br/>
+[Day 98 - Using Resource Locks in a YAML Pipeline](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.98.using.resource.locks.in.a.yaml.pipeline.md)<br/>
